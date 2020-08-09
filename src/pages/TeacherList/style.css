@@ -52,8 +52,9 @@
 #search-teachers .input-block label{
   font-size: 1.4rem;
 }
-#search-teachers .input-block + .input-block{
-  margin-top: 1.4rem;
+#search-teachers .input-block + .input-block,
+#search-teachers .select-block + .select-block{
+  margin-top: 0;
 }
 #search-teachers .input-block input{
   width: 100%;
