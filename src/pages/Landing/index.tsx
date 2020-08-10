@@ -1,13 +1,22 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import Logo from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/landing.svg';
 import studyIcon from '../../assets/images/icons/study.svg'
 import giveIcon from '../../assets/images/icons/give-classes.svg';
 import pupleIcon from '../../assets/images/icons/purple-heart.svg';
+import api from '../../services/api';
 import './style.css';
 
 const Landing:React.FC = () => {
+  const [totalConnections,setTotalConnections] = useState(0);
+  useEffect(()=>{
+     api.get('connections').then(response=>{
+       const date = response.data.total;
+       setTotalConnections(date);
+       console.log(date);
+     });
+  },[])
   return (
     <div id="page-landing">
       <div className="container" id="page-landing-content">
@@ -29,7 +38,7 @@ const Landing:React.FC = () => {
             </Link>
         </div>
         <span className='total-connections'>
-          Total de 200 conexões
+          Total de {totalConnections} conexões
           <img src={pupleIcon} alt="Coração Roxo"/>
         </span>
       </div>
